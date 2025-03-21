@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="storelocator" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Store Locator</label>
+            <tab>general</tab>
+            <resource>Magecan_StoreLocator::storelocator_configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Options</label>
+                <attribute type="expanded">1</attribute>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Store Locator</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="page_title" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page Title</label>
+                </field>
+                <field id="google_maps_api_key" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Google Maps API Key</label>
+                    <comment>
+                        <![CDATA[Enter API key to use the Map content type. <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">Get API Key</a>.]]>
+                    </comment>
+                </field>
+                <field id="google_maps_api_key_validator" translate="button_label valid_label invalid_label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <attribute type="button_label">Test Key</attribute>
+                    <attribute type="valid_label">Key is valid</attribute>
+                    <attribute type="invalid_label">Key is invalid. Try a different key.</attribute>
+                    <attribute type="source_field">storelocator_general_google_maps_api_key</attribute>
+                    <frontend_model>Magento\PageBuilder\Block\Adminhtml\System\Config\Form\Field\GoogleMapsApiKey</frontend_model>
+                </field>
+                <field id="map_height" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Height</label>
+                    <comment>Unit: px</comment>
+                    <validate>required-number validate-number</validate>
+                </field>
+                <field id="map_center_latitude" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Initial Map Center Latitude</label>
+                    <validate>required-number validate-number</validate>
+                    <comment>How to get the coordinates of a place:
+                        (1)On your computer, open Google Maps.
+                        (2)Right-click the place or area on the map.
+                        (3)Select the latitude and longitude, this will automatically copy the coordinates.
+                    </comment>
+                </field>
+                <field id="map_center_longitude" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Initial Map Center Longitude</label>
+                    <validate>required-number validate-number</validate>
+                </field>
+                <field id="initial_zoom" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Initial Map Zoom</label>
+                    <validate>required-number validate-number</validate>
+                </field>
+                <field id="store_marker" translate="label comment" type="image" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Marker</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">storelocator</upload_dir>
+                    <base_url type="media" scope_info="1">storelocator</base_url>
+                    <comment>Optional. The default is the built-in marker icon of the map. Allowed image types: jpg, gif, png. Suggested image size: 32 x 32 ~ 64 x 64 px.</comment>
+                </field>
+                <field id="search_location_marker" translate="label comment" type="image" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Search Location Marker</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">storelocator</upload_dir>
+                    <base_url type="media" scope_info="1">storelocator</base_url>
+                    <comment>Optional. The default is showing nothing. Allowed image types: jpg, gif, png. Suggested image size: 32 x 32  ~ 64 x 64 px.</comment>
+                </field>
+                <field id="radius_options" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Radius Options</label>
+                    <comment>Comma-separated. Unit: km</comment>
+                </field>
+                <field id="default_radius" translate="label comment" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Radius</label>
+                    <comment>Must be in the Radius Options list. Unit: km</comment>
+                </field>
+            </group>
+            <group id="seo" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Engine Optimization</label>
+                <attribute type="expanded">0</attribute>
+                <field id="meta_title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Meta Title</label>
+                </field>
+                <field id="meta_keywords" translate="label" type="textarea" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Meta Keywords</label>
+                </field>
+                <field id="meta_description" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Meta Description</label>
+                </field>
+            </group>    
+        </section>
+    </system>
+</config>

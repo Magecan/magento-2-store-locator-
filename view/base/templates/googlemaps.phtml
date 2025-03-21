@@ -1,0 +1,48 @@
+<?php
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+
+/**
+ * @var \Magecan\StoreLocator\Block\GoogleMapsApi $block
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$libraryUrl = $escaper->escapeJs($block->getLibraryUrl());
+$apiKey = $escaper->escapeJs($block->getApiKey());
+$invalidApiKeyMessage = $escaper->escapeJs($block->getInvalidApiKeyMessage());
+
+$script = <<<SCRIPT
+    require.config({
+        paths: {
+            googleMaps: '{$libraryUrl}'
+        },
+        config: {
+            'Magecan_StoreLocator/js/form/element/auto-complete': {
+                apiKey: '{$apiKey}',
+                apiKeyErrorMessage: '{$invalidApiKeyMessage}'
+            },
+        }
+    });
+SCRIPT;
+?>
+
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $script, false); ?>
+
+<?php
+$script = <<<SCRIPT
+    require.config({
+        shim: {
+            'Magecan_StoreLocator/js/form/element/auto-complete': {
+                deps: ['googleMaps']
+            },
+            'Magecan_StoreLocator/js/google-maps': {
+                deps: ['googleMaps']
+            }
+        }
+    });
+SCRIPT;
+?>
+
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $script, false); ?>

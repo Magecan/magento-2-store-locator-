@@ -1,0 +1,21 @@
+<!--
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+-->
+
+<div visible="!apiKeyValid()" class="google-map-auth-failure-placeholder"><p html="apiKeyErrorMessage"></p></div>
+<input visible="apiKeyValid" class="admin__control-text" type="text" afterRender="initAddressAutocomplete"
+    data-bind="
+        event: {change: userChanges},
+        value: value,
+        hasFocus: focused,
+        valueUpdate: valueUpdate,
+        attr: {
+            name: inputName,
+            placeholder: placeholder,
+            'aria-describedby': noticeId,
+            id: uid,
+            disabled: disabled,
+            maxlength: 255
+    }"/>

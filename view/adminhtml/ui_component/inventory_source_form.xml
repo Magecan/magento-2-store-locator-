@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="general">
+        <field name="location_search" formElement="input" component="Magecan_StoreLocator/js/form/element/auto-complete" sortOrder="45">
+            <settings>
+                <label translate="true">Location Search</label>
+                <notice translate="true">Start typing an address, then select from the list to automatically fill in the latitude, longitude, country, and postal code fields.</notice>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="address">
+        <settings>
+            <collapsible>false</collapsible>
+        </settings>
+    </fieldset>
+</form>

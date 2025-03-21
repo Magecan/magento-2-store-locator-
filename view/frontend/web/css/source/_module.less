@@ -1,0 +1,174 @@
+// /**
+//  * Copyright © Magecan, Inc. All rights reserved.
+//  */
+
+@import 'module/_ministorelocator.less';
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .storelocator-control-container {
+        > * {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+                
+        .search-address {
+            display: flex;
+            
+            span {
+                margin-right: 10px;
+                margin-top: 5px;
+            }
+        }
+                
+        .use-my-location {
+            width: 100%;
+        }
+    }
+
+    .storelocator-container {
+        .map {
+            height: 100%;
+        }
+
+        .store-list{
+            overflow-y: auto;
+            width: 240px;
+
+            &.hidden {
+                display: none;
+            }
+
+            .message {
+                &.info, &.error, &.warning, &.notice, &.success {
+                    margin: 0;
+                }
+            }
+
+            .store-item {
+                border-top: 1px solid #ccc;
+                padding: 10px;
+            }
+        }
+    
+        // customize InfoWindow
+        .store-name {
+            font-weight: 600;
+        }
+    }    
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .storelocator-container {
+        position: relative;
+
+        .store-list {
+            background-color: rgba(255, 255, 255, 0.75);
+            left: 0;
+            position: absolute;
+            top: 0;
+            transition: left 0.5s ease;
+            z-index: @z-index-2;
+
+            &.collapsed {
+                left: -240px;
+            }
+        }
+
+        .toggle-store-list-icon {
+            border-radius: 50%;
+            height: 48px;
+            position: absolute;
+            left: 240px;
+            top: 0;
+            transition: left 0.5s ease;
+            width: 48px;
+            z-index: @z-index-3;
+
+            &.hidden {
+                display: none;
+            }
+
+            &.collapsed {
+                left: 0;
+
+                span {
+                    transform: rotate(270deg);
+                }
+            }
+            
+            span {
+                .lib-icon-font(
+                @_icon-font-content: @icon-arrow-down,
+                @_icon-font-size: 22px,
+                @_icon-font-line-height: 28px,
+                @_icon-font-text-hide: true
+                );
+                transform: rotate(90deg);
+            }
+        }
+            
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: @z-index-1;
+            
+            &.expanded {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .map {
+            width: 100%
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .storelocator-control-container {
+        display: flex;
+
+        > * {
+            flex: 1;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        
+        .search-address {
+            min-width: 320px;
+        }
+    }
+
+   .storelocator-container {
+        display: flex;
+
+        .map {
+            flex-grow: 1;
+        }
+
+        .toggle-store-list-icon, {
+            display: none;
+        }
+
+        .map-overlay {
+            display: none;
+        }
+    }   
+}

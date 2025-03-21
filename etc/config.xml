@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <storelocator>
+            <general>
+                <enabled>0</enabled>
+                <page_title>Store Locator</page_title>
+                <map_height>600</map_height>
+                <map_center_latitude>0</map_center_latitude>
+                <map_center_longitude>0</map_center_longitude>
+                <initial_zoom>0</initial_zoom>
+                <radius_options>2,5,10,25</radius_options>
+                <default_radius>5</default_radius>
+            </general>
+            <seo>
+                <meta_title>Store Locator</meta_title>
+                <meta_keywords>Store Locator</meta_keywords>
+                <meta_description>Store Locator</meta_description>
+            </seo>
+        </storelocator>
+    </default>
+</config>

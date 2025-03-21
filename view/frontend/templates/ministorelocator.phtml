@@ -1,0 +1,14 @@
+<?php
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+
+/** @var $block \Magecan\StoreLocator\Block\MiniStoreLocator */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<div class="ministorelocator-wrapper">
+    <a class="ministorelocator" href="<?= $escaper->escapeUrl($block->getStoreLocatorUrl()) ?>">
+        <span><?= $escaper->escapeHtml(__('Stores')) ?></span>
+    </a>
+</div>

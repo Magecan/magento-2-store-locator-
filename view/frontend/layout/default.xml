@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+        <referenceContainer name="header-wrapper">
+            <block class="Magecan\StoreLocator\Block\MiniStoreLocator" name="ministorelocator" after="minicart" template="Magecan_StoreLocator::ministorelocator.phtml" ifconfig="storelocator/general/enabled" />
+	   </referenceContainer>
+    </body>
+</page>

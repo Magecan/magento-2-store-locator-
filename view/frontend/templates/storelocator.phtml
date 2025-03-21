@@ -1,0 +1,101 @@
+<?php
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+?>
+
+<style>
+    .storelocator-container {height: <?= $escaper->escapeHtmlAttr($block->getMapHeight()); ?>px;}
+    .store-list {max-height: <?= $escaper->escapeHtmlAttr($block->getMapHeight()); ?>px;}
+</style>
+<div class="storelocator" data-bind="scope: 'storelocator'">
+    <div class="storelocator-control-container">
+        <select id="radius">
+            <?php foreach ($block->getAvailableRadius() as $value): ?>
+                <option value="<?= $escaper->escapeHtmlAttr($value) ?>"
+                    <?php if ($value == $block->getDefaultRadius()): ?> selected="selected"<?php endif ?>>
+                    <?= $escaper->escapeHtml(__('Search Radius') . ' ' . $value . ' km') ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <button id="use-my-location" class="action use-my-location primary" data-bind="click: searchMyLocation">
+            <?= $escaper->escapeHtml(__('Use My Location')) ?>
+        </button>
+        <div class="search-address">
+            <span><?= $escaper->escapeHtml(__('OR')) ?></span>
+            <input type="text" id="address"
+                placeholder="<?= $escaper->escapeHtmlAttr(__('Enter an address to search')) ?>">
+            <button class="action primary" data-bind="click: searchAddress">
+                <?= $escaper->escapeHtml(__('Search')) ?>
+            </button>
+        </div>
+    </div>
+
+    <div class="storelocator-container" >
+        <button class="action toggle-store-list-icon primary hidden"
+            id="toggle-store-list-icon" data-bind="click: toggleStoreList">
+            <span></span>
+        </button>
+        <div class="store-list hidden" id="store-list">
+            <div data-bind="attr: {class: 'message-' + message().type + ' ' + message().type + ' message'}">
+                <div id="store-list-message" data-bind="text: message().text"></div>
+            </div>
+                
+            <!-- ko foreach: { data: stores(), as: 'store'} -->
+            <div class="store-item" data-bind="click: $parent.storeItemClick,
+                event: {mouseover: $parent.storeItemMouseover, mouseout: $parent.storeItemMouseOut}">
+                <div class="store-name">
+                    <span data-bind="text: store.name"></span>
+                </div>
+                <div class="store-address">
+                    <span data-bind="text: store.street"></span>
+                </div>
+                <div class="store-address">
+                    <span data-bind="visible: store.city, text: store.city + ','"></span>
+                    <span data-bind="text: store.region"></span>
+                    <span data-bind="text: store.postcode"></span>
+                </div>
+                <div class="store-address">
+                    <span data-bind="text: store.country"></span>
+                </div>
+                <div class="store-contact">
+                    <span data-bind="visible: store.phone,
+                        text: '<?= $escaper->escapeHtml(__('Phone: ')) ?> ' + store.phone">
+                    </span>
+                </div>
+                <div class="store-contact">
+                    <span data-bind="visible: store.email,
+                        text: '<?= $escaper->escapeHtml(__('Email: ')) ?> ' + store.email">
+                    </span>
+                </div>
+                <div class="store-distance">
+                    <span data-bind="visible: store.distance,
+                        text: '<?= $escaper->escapeHtml(__('Distance: ')) ?> '
+                            + parseFloat(store.distance).toFixed(2) + ' km'">
+                    </span>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+        <div id="map-overlay" class="map-overlay" data-bind="click: mapOverlayClick"></div>
+        <div class="map" id="map"></div>
+    </div>
+</div>
+
+<script>
+    window.storeLocatorConfig = <?= /* @noEscape */ $block->getStoreLocatorConfig() ?>;
+</script>
+
+<script type="text/x-magento-init">
+    {
+        ".storelocator": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "storelocator": {
+                        "component": "Magecan_StoreLocator/js/google-maps"
+                    }
+                }
+            }
+        }
+    }
+</script>

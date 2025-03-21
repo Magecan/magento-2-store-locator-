@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magecan, Inc. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magecan\StoreLocator\Block\GoogleMapsApi" name="google.maps.api" template="Magecan_StoreLocator::googlemaps.phtml" ifconfig="storelocator/general/enabled" />
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magecan\StoreLocator\Block\StoreLocator" name="storelocator" template="Magecan_StoreLocator::storelocator.phtml" ifconfig="storelocator/general/enabled" />
+        </referenceContainer>
+    </body>
+</page>
